@@ -4,15 +4,21 @@ import { useState } from "react";
 import { FaEye, FaDownload } from "react-icons/fa";
 import PageShell from "@/components/PageShell";
 
-const pdfUrl = "/Krishnanaths_Resume.pdf";
-
-export default function Resume() {
+export default function ResumeView({
+  pdfUrl,
+  fileName,
+  summary,
+}: {
+  pdfUrl: string;
+  fileName: string;
+  summary: string;
+}) {
   const [showPreview, setShowPreview] = useState(false);
 
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = pdfUrl;
-    link.download = "Krishnanaths_Resume.pdf";
+    link.download = fileName;
     link.click();
   };
 
@@ -39,9 +45,7 @@ export default function Resume() {
           <div className="absolute -top-24 -right-24 w-48 h-48 bg-red-600/10 rounded-full blur-[80px]"></div>
 
           <p className="text-zinc-500 leading-relaxed mb-12 max-w-2xl font-medium uppercase tracking-widest text-xs">
-            View or download my comprehensive resume highlighting my technical
-            expertise, professional journey, and software engineering
-            qualifications.
+            {summary}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6">

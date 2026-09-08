@@ -74,6 +74,14 @@ h6 {
     @apply px-8 py-3 border border-white/20 text-white font-semibold rounded-full transition-all duration-300 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white;
   }
 
+  .admin-input {
+    @apply w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-red-500/50;
+  }
+
+  .admin-label {
+    @apply mb-2 block text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500;
+  }
+
   .glass-card {
     @apply relative overflow-hidden bg-white/[0.035] border border-white/10 backdrop-blur-md rounded-2xl;
     --spot-x: 50%;

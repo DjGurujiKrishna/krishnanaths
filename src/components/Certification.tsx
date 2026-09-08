@@ -1,6 +1,7 @@
 import { FaCertificate, FaExternalLinkAlt } from "react-icons/fa";
 
-type CertificationItem = {
+export type CertificationItem = {
+  id: string;
   name: string;
   organization: string;
   issueDate: string;
@@ -48,7 +49,7 @@ function CertificationCard({
             </span>
           </div>
 
-          {cert.credentialUrl && (
+          {cert.credentialUrl ? (
             <a
               href={cert.credentialUrl}
               target="_blank"
@@ -58,44 +59,30 @@ function CertificationCard({
               <span>Verify License</span>
               <FaExternalLinkAlt className="text-xs transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
             </a>
-          )}
+          ) : null}
         </div>
       </div>
     </div>
   );
 }
 
-const certifications: CertificationItem[] = [
-  {
-    name: "Full Stack Web Development",
-    organization: "Internshala",
-    issueDate: "October 2022",
-    credentialId: "F81F181A-1860-86A6-D7AE-C88D7695736D",
-    credentialUrl: "https://trainings.internshala.com/s/v/2254458/ff5a6bd0",
-  },
-  {
-    name: "Web Development",
-    organization: "Udemy",
-    issueDate: "October 2022",
-    credentialId: "UC-aaa3abc8-e3d7-4c4e-b616-bc2fbc8fd913",
-    credentialUrl:
-      "https://www.udemy.com/certificate/UC-aaa3abc8-e3d7-4c4e-b616-bc2fbc8fd913",
-  },
-  {
-    name: "Modern Javascript For React JS",
-    organization: "Udemy",
-    issueDate: "Nov 2024",
-    credentialId: "UC-7859a414-1414-4e4a-a049-0e55fbe7dd83",
-    credentialUrl:
-      "https://www.udemy.com/certificate/UC-7859a414-1414-4e4a-a049-0e55fbe7dd83/",
-  },
-];
+export default function Certification({
+  certifications,
+}: {
+  certifications: CertificationItem[];
+}) {
+  if (certifications.length === 0) {
+    return (
+      <p className="text-center text-zinc-500 uppercase tracking-widest text-xs">
+        No certifications added yet.
+      </p>
+    );
+  }
 
-export default function Certification() {
   return (
     <div className="flex flex-col gap-6 w-full max-w-5xl mx-auto">
       {certifications.map((cert, index) => (
-        <CertificationCard key={cert.credentialId} cert={cert} index={index} />
+        <CertificationCard key={cert.id} cert={cert} index={index} />
       ))}
     </div>
   );

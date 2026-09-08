@@ -3,14 +3,24 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
-const stats = [
-  { label: "Lead Engineer", value: "Lakshya" },
-  { label: "Stack", value: "MERN + Django" },
-  { label: "Based in", value: "Kochi, IN" },
-];
+type HomeContent = {
+  nameLine1: string;
+  nameLine2: string;
+  availability: string;
+  bio: string;
+  location: string;
+  stackLabel: string;
+  company: string;
+  position: string;
+};
 
-export default function Discription() {
+export default function Discription({ content }: { content: HomeContent }) {
   const router = useRouter();
+  const stats = [
+    { label: "Position", value: content.position },
+    { label: "Stack", value: content.stackLabel },
+    { label: "Based in", value: content.location },
+  ];
 
   return (
     <section className="relative overflow-hidden py-12 lg:py-0">
@@ -27,10 +37,10 @@ export default function Discription() {
                 <span className="pulse-dot absolute inline-flex h-full w-full rounded-full bg-red-500" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
               </span>
-              Available for work
+              {content.availability}
             </span>
             <span className="text-red-500 uppercase tracking-[0.3em] text-sm font-bold">
-              Lead Software Engineer
+              {content.position}
             </span>
           </motion.div>
 
@@ -41,9 +51,9 @@ export default function Discription() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-6xl md:text-7xl lg:text-[5.4rem] font-extrabold text-white leading-[0.88] tracking-tighter"
             >
-              KRISHNA
+              {content.nameLine1}
               <br />
-              <span className="text-gradient">NATH&nbsp;S</span>
+              <span className="text-gradient">{content.nameLine2}</span>
             </motion.h1>
           </div>
 
@@ -53,11 +63,11 @@ export default function Discription() {
             transition={{ duration: 1, delay: 0.45 }}
             className="flex flex-wrap gap-x-6 gap-y-2 text-zinc-500 font-medium uppercase tracking-widest text-xs lg:text-sm"
           >
-            <span>Indian Institute of Commerce, Lakshya</span>
+            <span>{content.company}</span>
             <span className="text-red-600">•</span>
-            <span>Lead Full Stack Developer</span>
+            <span>{content.position}</span>
             <span className="text-red-600">•</span>
-            <span>Kochi, Kerala</span>
+            <span>{content.location}</span>
           </motion.div>
 
           <motion.p
@@ -66,12 +76,7 @@ export default function Discription() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-lg lg:text-xl text-zinc-400 leading-relaxed max-w-2xl font-light"
           >
-            Crafting high-performance web experiences with the{" "}
-            <span className="text-white font-semibold">
-              MERN Stack, Django, and Next.js.
-            </span>{" "}
-            Passionate about building modern, scalable, and user-centric
-            applications.
+            {content.bio}
           </motion.p>
 
           <motion.div

@@ -1,3 +1,10 @@
+export type EducationItem = {
+  id: string;
+  heading: string;
+  title: string;
+  value: string;
+};
+
 function EducationDetail({ title, value }: { title: string; value: string }) {
   return (
     <tr className="group transition-all duration-300">
@@ -11,83 +18,58 @@ function EducationDetail({ title, value }: { title: string; value: string }) {
   );
 }
 
-const higherEducation = [
-  {
-    title: "Degree",
-    value: "B.Tech in Computer Science and Engineering (2021-2025)",
-  },
-  {
-    title: "Institution",
-    value:
-      "Vidya Academy Of Science And Technology Technical Campus, Kilimanoor",
-  },
-  { title: "Performance (CGPA)", value: "8.3" },
-];
+export default function AboutDiscription({
+  education,
+}: {
+  education: EducationItem[];
+}) {
+  const groups = education.reduce<Record<string, EducationItem[]>>((acc, row) => {
+    acc[row.heading] = acc[row.heading] ?? [];
+    acc[row.heading].push(row);
+    return acc;
+  }, {});
 
-const highSchool = [
-  { title: "Specialization", value: "Biology Science (2018-2020)" },
-  {
-    title: "Institution",
-    value: "Govt. Model Higher Secondary School, Varkala",
-  },
-  { title: "Performance (%)", value: "94.5" },
-];
+  const headings = Object.keys(groups);
 
-export default function AboutDiscription() {
+  if (headings.length === 0) {
+    return (
+      <p className="text-center text-zinc-500 uppercase tracking-widest text-xs">
+        No education added yet.
+      </p>
+    );
+  }
+
   return (
     <div className="space-y-12">
-      <div
-        className="glass-card p-10 relative overflow-hidden group hover:border-red-500/30 transition-all duration-500"
-        data-aos="fade-up"
-      >
-        <div className="absolute -top-12 -right-12 w-24 h-24 bg-red-600/5 rounded-full blur-2xl group-hover:bg-red-600/10 transition-all duration-700"></div>
+      {headings.map((heading, index) => (
+        <div
+          key={heading}
+          className="glass-card p-10 relative overflow-hidden group hover:border-red-500/30 transition-all duration-500"
+          data-aos="fade-up"
+          data-aos-delay={index * 100}
+        >
+          <div className="absolute -top-12 -right-12 w-24 h-24 bg-red-600/5 rounded-full blur-2xl group-hover:bg-red-600/10 transition-all duration-700"></div>
 
-        <h3 className="text-xl font-black text-white font-outfit uppercase tracking-tighter mb-8 flex items-center">
-          <span className="w-8 h-[2px] bg-red-600 mr-4"></span>
-          Higher Education
-        </h3>
+          <h3 className="text-xl font-black text-white font-outfit uppercase tracking-tighter mb-8 flex items-center">
+            <span className="w-8 h-[2px] bg-red-600 mr-4"></span>
+            {heading}
+          </h3>
 
-        <div className="w-full">
-          <table className="w-full">
-            <tbody className="divide-y divide-white/5">
-              {higherEducation.map((item) => (
-                <EducationDetail
-                  key={item.title}
-                  title={item.title}
-                  value={item.value}
-                />
-              ))}
-            </tbody>
-          </table>
+          <div className="w-full">
+            <table className="w-full">
+              <tbody className="divide-y divide-white/5">
+                {groups[heading].map((item) => (
+                  <EducationDetail
+                    key={item.id}
+                    title={item.title}
+                    value={item.value}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-
-      <div
-        className="glass-card p-10 relative overflow-hidden group hover:border-red-500/30 transition-all duration-500"
-        data-aos="fade-up"
-        data-aos-delay="100"
-      >
-        <div className="absolute -top-12 -right-12 w-24 h-24 bg-red-600/5 rounded-full blur-2xl group-hover:bg-red-600/10 transition-all duration-700"></div>
-
-        <h3 className="text-xl font-black text-white font-outfit uppercase tracking-tighter mb-8 flex items-center">
-          <span className="w-8 h-[2px] bg-red-600 mr-4"></span>
-          High School Diploma
-        </h3>
-
-        <div className="w-full">
-          <table className="w-full">
-            <tbody className="divide-y divide-white/5">
-              {highSchool.map((item) => (
-                <EducationDetail
-                  key={item.title}
-                  title={item.title}
-                  value={item.value}
-                />
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      ))}
     </div>
   );
 }

@@ -1,7 +1,12 @@
 import PageShell from "@/components/PageShell";
 import SkillDiscription from "@/components/SkillDiscription";
+import { getSkills } from "@/lib/queries";
 
-export default function Skills() {
+export const dynamic = "force-dynamic";
+
+export default async function Skills() {
+  const skills = await getSkills();
+
   return (
     <PageShell className="min-h-screen bg-black py-24 px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
@@ -23,7 +28,7 @@ export default function Skills() {
           </div>
 
           <div className="w-full" data-aos="fade-up">
-            <SkillDiscription />
+            <SkillDiscription skills={skills} />
           </div>
         </div>
       </div>

@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Profile {
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  nameLine1    String @default("KRISHNA")
+  nameLine2    String @default("NATH S")
+  availability String @default("Available for work")
+  bio          String
+  location     String
+  stackLabel   String
+  portraitUrl  String @default("/krishna.jpg")
+  marquee      String
+  badgeLabel   String @default("Lead Engineer")
+}
+
+model Job {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  company      String
+  location     String
+  locationType String
+  startDate    String
+  endDate      String
+  description  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Education {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  heading String
+  title   String
+  value   String
+  order   Int    @default(0)
+}
+
+model Certification {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  organization  String
+  issueDate     String
+  credentialId  String
+  credentialUrl String @default("")
+  order         Int    @default(0)
+}
+
+model SkillCategory {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  category String
+  skills   String
+  order    Int    @default(0)
+}
+
+model Service {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  icon        String @default("FaCode")
+  order       Int    @default(0)
+}
+
+model Project {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  description    String
+  status         String @default("completed")
+  githubLink     String @default("nil")
+  productionLink String @default("nil")
+  order          Int    @default(0)
+}
+
+model Resume {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  summary  String
+  pdfUrl   String @default("/Krishnanaths_Resume.pdf")
+  fileName String @default("Krishnanaths_Resume.pdf")
+}

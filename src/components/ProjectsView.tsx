@@ -4,7 +4,8 @@ import { useState } from "react";
 import { FaGithub, FaExternalLinkAlt, FaSearch } from "react-icons/fa";
 import PageShell from "@/components/PageShell";
 
-type ProjectItem = {
+export type ProjectItem = {
+  id: string;
   name: string;
   description: string;
   status: string;
@@ -62,7 +63,7 @@ function Project({
           <span>Source</span>
         </a>
 
-        {productionLink !== "nil" && (
+        {productionLink !== "nil" && productionLink ? (
           <a
             href={productionLink}
             className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-red-500 hover:text-red-400 transition-all"
@@ -72,64 +73,13 @@ function Project({
             <FaExternalLinkAlt className="text-lg" />
             <span>Launch</span>
           </a>
-        )}
+        ) : null}
       </div>
     </div>
   );
 }
 
-const projects: ProjectItem[] = [
-  {
-    name: "AnyTimeRequest Mock Server",
-    description:
-      "Full-fledged API testing suite with WebSocket relay for local/production bridging, multiple tabs, and assertion support.",
-    status: "completed",
-    githubLink: "https://github.com/DJGuruji/meshcore",
-    productionLink: "https://anytimerequest.com",
-  },
-  {
-    name: "Simplita.ai",
-    description:
-      "AI-powered automation platform enhancing business decision-making with high-performance data processing.",
-    status: "completed",
-    githubLink: "nil",
-    productionLink: "https://app.simplita.ai",
-  },
-  {
-    name: "Find My Client",
-    description:
-      "AI-powered MERN application connecting freelance workers with clients, optimized via Cloudinary.",
-    status: "completed",
-    githubLink: "https://github.com/DJGuruji/fmcFrontend",
-    productionLink: "https://fmc.deno.dev",
-  },
-  {
-    name: "Virtual Hospital",
-    description:
-      "Innovative platform for medical appointments with AI diagnostics and Nationwide access.",
-    status: "completed",
-    githubLink: "https://github.com/DJGuruji/AI-Assisted-Virtual-Hospital",
-    productionLink: "https://vmas.deno.dev",
-  },
-  {
-    name: "Vyuha",
-    description:
-      "College event ticket booking system for alumni and students using the MERN stack.",
-    status: "completed",
-    githubLink: "https://github.com/DJGuruji/vyuha",
-    productionLink: "https://vidyavyuha.in",
-  },
-  {
-    name: "Ecommerce ( G-cart )",
-    description:
-      "Modern retail platform with secure payments and responsive design powered by React.",
-    status: "completed",
-    githubLink: "https://github.com/DJGuruji/Ecommerce",
-    productionLink: "https://gcart.deno.dev",
-  },
-];
-
-export default function ProjectsPage() {
+export default function ProjectsView({ projects }: { projects: ProjectItem[] }) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredProjects = projects.filter((p) =>
@@ -169,7 +119,7 @@ export default function ProjectsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredProjects.map((project) => (
-            <Project key={project.name} {...project} />
+            <Project key={project.id} {...project} />
           ))}
         </div>
 

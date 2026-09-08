@@ -6,9 +6,9 @@ import { IoSchool } from "react-icons/io5";
 import { PiCertificateFill } from "react-icons/pi";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import type { IconType } from "react-icons";
-import AboutDiscription from "@/components/AboutDiscription";
-import Certification from "@/components/Certification";
-import Internship from "@/components/Internship";
+import AboutDiscription, { type EducationItem } from "@/components/AboutDiscription";
+import Certification, { type CertificationItem } from "@/components/Certification";
+import Internship, { type JobItem } from "@/components/Internship";
 import PageShell from "@/components/PageShell";
 
 function NavButton({
@@ -52,7 +52,15 @@ function SectionHeader({ title }: { title: string }) {
   );
 }
 
-export default function About() {
+export default function AboutView({
+  jobs,
+  certifications,
+  education,
+}: {
+  jobs: JobItem[];
+  certifications: CertificationItem[];
+  education: EducationItem[];
+}) {
   const degreeRef = useRef<HTMLDivElement>(null);
   const internshipRef = useRef<HTMLDivElement>(null);
   const certificationRef = useRef<HTMLDivElement>(null);
@@ -85,21 +93,21 @@ export default function About() {
         <div ref={internshipRef} className="py-20 relative">
           <SectionHeader title="Professional Experience" />
           <div className="relative w-full">
-            <Internship />
+            <Internship jobs={jobs} />
           </div>
         </div>
 
         <div ref={certificationRef} className="py-20 relative">
           <SectionHeader title="Certifications" />
           <div className="relative w-full">
-            <Certification />
+            <Certification certifications={certifications} />
           </div>
         </div>
 
         <div ref={degreeRef} className="py-20 mb-20 relative">
           <SectionHeader title="Education" />
           <div className="relative w-full">
-            <AboutDiscription />
+            <AboutDiscription education={education} />
           </div>
         </div>
       </div>

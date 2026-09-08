@@ -1,6 +1,14 @@
 import Image from "next/image";
 
-export default function HomeImg() {
+export default function HomeImg({
+  src,
+  badge,
+}: {
+  src: string;
+  badge: string;
+}) {
+  const isRemote = src.startsWith("http");
+
   return (
     <div className="flex items-center justify-center py-8 md:py-12 px-4 relative">
       <div className="relative group animate-float" data-aos="zoom-in">
@@ -11,11 +19,12 @@ export default function HomeImg() {
           <div className="absolute -bottom-3 -right-3 h-16 w-16 border-b-2 border-r-2 border-white/70 rounded-br-3xl" />
 
           <Image
-            src="/krishna.jpg"
-            alt="Portrait of Krishnanath S"
+            src={src}
+            alt="Portrait"
             width={384}
             height={550}
             priority
+            unoptimized={isRemote}
             className="rounded-[2.5rem] object-cover border-[6px] border-white/90 shadow-[0_20px_50px_rgba(0,0,0,0.5)]
                        w-64 h-80
                        md:w-80 md:h-[450px]
@@ -27,7 +36,7 @@ export default function HomeImg() {
         </div>
 
         <div className="absolute -bottom-4 left-6 z-20 rounded-full border border-white/10 bg-black/70 px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-white backdrop-blur-md">
-          Lead Engineer
+          {badge}
         </div>
         <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-red-600 rounded-2xl rotate-12 -z-10 blur-xl opacity-50 animate-pulse"></div>
       </div>

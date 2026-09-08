@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter, Outfit } from "next/font/google";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import AppProviders from "@/providers/AppProviders";
 import "./globals.css";
 
@@ -38,13 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${outfit.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-black text-white">
-        <AppProviders>
-          <div className="flex flex-col min-h-screen">
-            <Navbar />
-            <div className="flex-grow lg:pt-20 pt-0">{children}</div>
-            <Footer />
-          </div>
-        </AppProviders>
+        <AppProviders>{children}</AppProviders>
       </body>
     </html>
   );

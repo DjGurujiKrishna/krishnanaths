@@ -1,8 +1,14 @@
+export type SkillItem = {
+  id: string;
+  category: string;
+  skills: string;
+};
+
 function SkillCategory({
   skillSet,
   index,
 }: {
-  skillSet: { category: string; skills: string };
+  skillSet: SkillItem;
   index: number;
 }) {
   return (
@@ -32,32 +38,15 @@ function SkillCategory({
   );
 }
 
-const skillCategories = [
-  {
-    category: "Backend Development",
-    skills:
-      "Node JS, Express JS, Django, Fast API, Java Spring Boot, Deno JS, Nest JS",
-  },
-  {
-    category: "Frontend Architecture",
-    skills:
-      "HTML5, CSS, Tailwind CSS, React JS, Next JS, TypeScript, Zustand, Angular JS",
-  },
-  {
-    category: "Database Systems",
-    skills: "MongoDB, MySQL, PostgreSQL, Redis",
-  },
-  {
-    category: "Cloud & DevOps",
-    skills: "AWS, Docker, Azure, CI/CD, Kubernetes",
-  },
-  {
-    category: "Programming",
-    skills: "Python, JavaScript, Java, C++, PHP, Go",
-  },
-];
+export default function SkillDiscription({ skills }: { skills: SkillItem[] }) {
+  if (skills.length === 0) {
+    return (
+      <p className="text-center text-zinc-500 uppercase tracking-widest text-xs">
+        No skills added yet.
+      </p>
+    );
+  }
 
-export default function SkillDiscription() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-4 mb-10" data-aos="fade-right">
@@ -68,12 +57,8 @@ export default function SkillDiscription() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {skillCategories.map((skillSet, index) => (
-          <SkillCategory
-            key={skillSet.category}
-            skillSet={skillSet}
-            index={index}
-          />
+        {skills.map((skillSet, index) => (
+          <SkillCategory key={skillSet.id} skillSet={skillSet} index={index} />
         ))}
       </div>
     </div>
