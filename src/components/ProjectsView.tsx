@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { FaGithub, FaExternalLinkAlt, FaSearch } from "react-icons/fa";
+import { useLayoutEffect, useRef, useState } from "react";
+import { FaGithub, FaExternalLinkAlt, FaSearch, FaChevronDown } from "react-icons/fa";
 import PageShell from "@/components/PageShell";
 
 export type ProjectItem = {
@@ -28,8 +28,8 @@ function Project({
       <div className="absolute -top-24 -right-24 w-48 h-48 bg-red-600/10 rounded-full blur-[80px] group-hover:bg-red-600/20 transition-all duration-700"></div>
 
       <div>
-        <div className="flex justify-between items-start mb-6">
-          <h2 className="text-3xl font-black text-white font-outfit leading-tight tracking-tighter">
+        <div className="flex justify-between items-start mb-6 gap-4 min-w-0">
+          <h2 className="text-3xl font-black text-white font-outfit leading-tight tracking-tighter break-words min-w-0">
             {name.toUpperCase()}
           </h2>
           <span
@@ -43,9 +43,7 @@ function Project({
           </span>
         </div>
 
-        <p className="text-zinc-400 leading-relaxed font-light text-lg mb-8">
-          {description}
-        </p>
+        <ExpandableText text={description} />
       </div>
 
       <div className="flex items-center gap-6 mt-auto">
@@ -75,6 +73,59 @@ function Project({
           </a>
         ) : null}
       </div>
+    </div>
+  );
+}
+
+function ExpandableText({ text }: { text: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const [needsToggle, setNeedsToggle] = useState(false);
+  const textRef = useRef<HTMLParagraphElement>(null);
+
+  useLayoutEffect(() => {
+    const el = textRef.current;
+    if (!el) return;
+
+    const measure = () => {
+      if (expanded) return;
+      setNeedsToggle(el.scrollHeight > el.clientHeight + 1);
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [text, expanded]);
+
+  return (
+    <div className="mb-8">
+      <div className="relative">
+        <p
+          ref={textRef}
+          className={`text-zinc-400 leading-relaxed font-light text-lg ${
+            expanded ? "" : "line-clamp-4"
+          }`}
+        >
+          {text}
+        </p>
+        {!expanded && needsToggle ? (
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/70 to-transparent" />
+        ) : null}
+      </div>
+      {needsToggle ? (
+        <button
+          type="button"
+          onClick={() => setExpanded((open) => !open)}
+          className="mt-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-red-500 transition-all hover:border-red-500/40 hover:text-white"
+        >
+          {expanded ? "Show less" : "Show more"}
+          <FaChevronDown
+            className={`text-[10px] transition-transform duration-300 ${
+              expanded ? "rotate-180" : ""
+            }`}
+          />
+        </button>
+      ) : null}
     </div>
   );
 }

@@ -1,8 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { FaEye, FaDownload } from "react-icons/fa";
+import { FaEye, FaDownload, FaExternalLinkAlt } from "react-icons/fa";
 import PageShell from "@/components/PageShell";
+import {
+  getResumeDownloadUrl,
+  getResumeOpenUrl,
+  getResumePreviewUrl,
+} from "@/lib/resumeUrl";
 
 export default function ResumeView({
   pdfUrl,
@@ -14,13 +19,9 @@ export default function ResumeView({
   summary: string;
 }) {
   const [showPreview, setShowPreview] = useState(false);
-
-  const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href = pdfUrl;
-    link.download = fileName;
-    link.click();
-  };
+  const previewUrl = getResumePreviewUrl(pdfUrl);
+  const downloadUrl = getResumeDownloadUrl(pdfUrl);
+  const openUrl = getResumeOpenUrl(pdfUrl);
 
   return (
     <PageShell className="min-h-screen bg-black text-white py-24 px-6 flex flex-col items-center relative overflow-hidden">
@@ -58,14 +59,16 @@ export default function ResumeView({
               Preview Document
             </button>
 
-            <button
-              onClick={handleDownload}
+            <a
+              href={downloadUrl}
+              download={fileName}
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-10 py-4 border border-white/10 text-white text-[10px] font-black uppercase tracking-widest rounded-full hover:border-red-500/50 hover:bg-red-600/10 transition-all duration-300 flex items-center gap-3"
-              type="button"
             >
               <FaDownload className="text-lg" />
               Download PDF
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -73,19 +76,35 @@ export default function ResumeView({
       {showPreview && (
         <div className="fixed inset-0 bg-black/95 backdrop-blur-2xl flex items-center justify-center z-[200] p-6 lg:p-12">
           <div className="glass-card w-full max-w-5xl h-full flex flex-col relative overflow-hidden">
-            <div className="p-6 border-b border-white/5 flex justify-between items-center">
+            <div className="p-6 border-b border-white/5 flex justify-between items-center gap-4">
               <h2 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-400">
                 Credential Preview
               </h2>
-              <button
-                onClick={() => setShowPreview(false)}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 text-white hover:bg-red-600 transition-all text-xl font-bold"
-                type="button"
-              >
-                &times;
-              </button>
+              <div className="flex items-center gap-3">
+                <a
+                  href={openUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-white/10"
+                >
+                  <FaExternalLinkAlt />
+                  Open
+                </a>
+                <button
+                  onClick={() => setShowPreview(false)}
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 text-white hover:bg-red-600 transition-all text-xl font-bold"
+                  type="button"
+                >
+                  &times;
+                </button>
+              </div>
             </div>
-            <iframe src={pdfUrl} title="Resume Preview" className="flex-1 w-full" />
+            <iframe
+              src={previewUrl}
+              title="Resume Preview"
+              className="flex-1 w-full bg-black"
+              allow="autoplay"
+            />
           </div>
         </div>
       )}

@@ -1,4 +1,5 @@
 import { loginAdmin } from "@/actions/content";
+import SubmitButton from "@/components/admin/SubmitButton";
 
 export default async function AdminLoginPage({
   searchParams,
@@ -32,9 +33,7 @@ export default async function AdminLoginPage({
             className="admin-input"
           />
         </label>
-        <button className="btn-modern w-full" type="submit">
-          Enter
-        </button>
+        <SubmitButton idle="Enter" pending="Signing in..." className="btn-modern w-full" />
       </form>
     </div>
   );

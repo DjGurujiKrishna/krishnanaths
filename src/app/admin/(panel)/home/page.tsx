@@ -1,4 +1,5 @@
 import { saveProfile } from "@/actions/content";
+import SubmitButton from "@/components/admin/SubmitButton";
 import { getLatestJob, getProfile } from "@/lib/queries";
 
 export default async function AdminHomePage() {
@@ -63,9 +64,7 @@ export default async function AdminHomePage() {
           <textarea className="admin-input min-h-24" name="marquee" defaultValue={profile?.marquee} required />
         </label>
         <div className="md:col-span-2">
-          <button className="btn-modern" type="submit">
-            Save home content
-          </button>
+          <SubmitButton idle="Save home content" pending="Saving..." />
         </div>
       </form>
     </div>

@@ -18,17 +18,17 @@ function CertificationCard({
 }) {
   return (
     <div
-      className="glass-card p-8 group relative overflow-hidden transition-all duration-500 hover:border-red-500/30"
+      className="glass-card p-5 sm:p-8 group relative overflow-hidden transition-all duration-500 hover:border-red-500/30"
       data-aos="fade-up"
       data-aos-delay={index * 100}
     >
       <div className="absolute -top-12 -right-12 w-24 h-24 bg-red-600/5 rounded-full blur-2xl group-hover:bg-red-600/10 transition-all duration-700"></div>
 
-      <div className="flex flex-col md:flex-row justify-between items-start gap-6">
-        <div className="flex-1">
-          <div className="flex items-center gap-3 mb-3">
-            <FaCertificate className="text-red-600 text-sm" />
-            <h3 className="text-xl font-black text-white font-outfit uppercase tracking-tighter transition-colors group-hover:text-red-500">
+      <div className="flex flex-col md:flex-row justify-between items-start gap-6 min-w-0">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-start gap-3 mb-3">
+            <FaCertificate className="text-red-600 text-sm mt-1 shrink-0" />
+            <h3 className="text-xl font-black text-white font-outfit uppercase tracking-tighter transition-colors group-hover:text-red-500 break-words">
               {cert.name}
             </h3>
           </div>
@@ -39,12 +39,12 @@ function CertificationCard({
           </div>
         </div>
 
-        <div className="flex flex-col items-start md:items-end gap-3 min-w-fit">
-          <div className="flex flex-col items-start md:items-end">
+        <div className="flex flex-col items-start md:items-end gap-3 w-full md:w-auto md:max-w-[46%] min-w-0">
+          <div className="flex flex-col items-start md:items-end w-full min-w-0">
             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600 mb-1">
               Credential ID
             </span>
-            <span className="text-[10px] font-mono text-zinc-400 tracking-wider bg-white/5 px-2 py-1 rounded">
+            <span className="text-[10px] font-mono text-zinc-400 tracking-normal bg-white/5 px-2 py-1 rounded break-all max-w-full w-full md:w-auto">
               {cert.credentialId}
             </span>
           </div>

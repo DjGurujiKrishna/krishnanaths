@@ -69,7 +69,7 @@ export default function Internship({ jobs }: { jobs: JobItem[] }) {
   }
 
   return (
-    <div className="flex flex-col gap-10 w-full max-w-5xl mx-auto py-8 relative">
+    <div className="flex flex-col gap-10 w-full max-w-5xl mx-auto relative">
       {jobs.map((internship, index) => (
         <InternshipCard key={internship.id} internship={internship} index={index} />
       ))}

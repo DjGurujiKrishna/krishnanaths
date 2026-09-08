@@ -1,4 +1,5 @@
 import { saveResume } from "@/actions/content";
+import SubmitButton from "@/components/admin/SubmitButton";
 import { getResume } from "@/lib/queries";
 
 export default async function AdminResumePage() {
@@ -11,7 +12,7 @@ export default async function AdminResumePage() {
           Resume
         </h1>
         <p className="mt-2 text-xs uppercase tracking-[0.18em] text-zinc-500">
-          Point the PDF URL at a file in /public or any hosted link.
+          Paste a Google Drive share link or a file in /public. Drive links are converted to an embeddable preview automatically.
         </p>
       </div>
       <form action={saveResume} className="glass-card p-6 grid gap-4">
@@ -42,9 +43,7 @@ export default async function AdminResumePage() {
             required
           />
         </label>
-        <button className="btn-modern w-fit" type="submit">
-          Save resume
-        </button>
+        <SubmitButton idle="Save resume" pending="Saving..." className="btn-modern w-fit" />
       </form>
     </div>
   );

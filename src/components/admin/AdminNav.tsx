@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { logoutAdmin } from "@/actions/content";
+import SubmitButton from "@/components/admin/SubmitButton";
 
 const links = [
   { href: "/admin", label: "Overview" },
@@ -41,12 +42,11 @@ export default function AdminNav() {
           ))}
         </nav>
         <form action={logoutAdmin} className="mt-6">
-          <button
-            className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 hover:text-white"
-            type="submit"
-          >
-            Sign out
-          </button>
+          <SubmitButton
+            idle="Sign out"
+            pending="Signing out..."
+            className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 hover:text-white disabled:opacity-60 disabled:cursor-wait"
+          />
         </form>
       </div>
     </aside>

@@ -49,7 +49,7 @@ h6 {
 
 @layer components {
   .btn-modern {
-    @apply relative overflow-hidden px-8 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-bold rounded-full uppercase tracking-wider transition-all duration-300 shadow-[0_0_20px_rgba(255,49,49,0.3)] hover:shadow-[0_0_36px_rgba(255,49,49,0.55)] hover:scale-105 active:scale-95;
+    @apply relative overflow-hidden px-8 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-bold rounded-full uppercase tracking-wider transition-all duration-300 shadow-[0_0_20px_rgba(255,49,49,0.3)] hover:shadow-[0_0_36px_rgba(255,49,49,0.55)] hover:scale-105 active:scale-95 disabled:opacity-60 disabled:cursor-wait disabled:hover:scale-100 disabled:hover:shadow-[0_0_20px_rgba(255,49,49,0.3)];
   }
 
   .btn-modern::after {
