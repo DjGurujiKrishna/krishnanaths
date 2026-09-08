@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   FaGithub,
   FaInstagram,
@@ -51,24 +52,51 @@ const socialLinks = [
   },
 ];
 
+const footerLinks = [
+  { name: "About", href: "/about" },
+  { name: "Projects", href: "/projects" },
+  { name: "Resume", href: "/resume" },
+  { name: "Contact", href: "/contact" },
+];
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-black border-t border-white/5 relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-x-0 -top-24 h-48 bg-gradient-to-b from-red-600/10 to-transparent" />
+      <p className="pointer-events-none absolute left-1/2 top-8 -translate-x-1/2 select-none text-[18vw] font-black leading-none tracking-tighter text-white/[0.03] font-outfit">
+        KRISHNA
+      </p>
       <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6" data-aos="fade-right">
             <h3 className="text-2xl font-black font-outfit text-white tracking-tighter uppercase">
               KRISHNA<span className="text-red-600">NATH</span>
             </h3>
-            <p className="text-zinc-600 max-w-xs font-medium uppercase tracking-widest text-[10px] leading-relaxed">
+            <p className="text-zinc-500 max-w-xs font-medium uppercase tracking-widest text-[10px] leading-relaxed">
               Crafting state-of-the-art digital experiences with precision and
               speed.
             </p>
           </div>
 
-          <div className="hidden lg:block"></div>
+          <div className="space-y-5" data-aos="fade-up">
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400">
+              Navigate
+            </h4>
+            <div className="flex flex-col gap-3">
+              {footerLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-xs font-bold uppercase tracking-[0.18em] text-zinc-500 hover:text-white transition-colors"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+
           <div className="hidden lg:block"></div>
 
           <div
@@ -92,17 +120,12 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-700">
+          <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-600">
             &copy; {currentYear} KRISHNANATH.S • ALL RIGHTS RESERVED
           </p>
-          <div className="flex gap-8 text-[10px] uppercase tracking-[0.2em] font-black text-zinc-500">
-            <span className="hover:text-white cursor-pointer transition-colors">
-              Privacy Policy
-            </span>
-            <span className="hover:text-white cursor-pointer transition-colors">
-              Terms of Service
-            </span>
-          </div>
+          <p className="text-[10px] uppercase tracking-[0.2em] font-black text-zinc-600">
+            Built with Next.js
+          </p>
         </div>
       </div>
     </footer>

@@ -12,14 +12,14 @@ export default function BackgroundToggle() {
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-yellow-800 hover:bg-yellow-700 text-yellow-200 p-2 rounded-full shadow-lg"
+        className="bg-red-600/90 hover:bg-red-500 text-white p-3 rounded-full shadow-[0_0_24px_rgba(255,49,49,0.35)] border border-white/10 backdrop-blur-md"
         title="3D Background Settings"
         type="button"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
+          width="18"
+          height="18"
           fill="currentColor"
           viewBox="0 0 16 16"
         >
@@ -28,9 +28,9 @@ export default function BackgroundToggle() {
       </button>
 
       {isOpen && (
-        <div className="mt-2 bg-gray-900 border border-yellow-700 p-4 rounded-lg shadow-lg backdrop-blur-sm">
-          <h3 className="text-yellow-200 font-medium mb-3 text-sm">
-            3D Background Settings
+        <div className="mt-3 glass-card border-red-500/20 p-4 w-64 shadow-2xl">
+          <h3 className="text-white font-medium mb-3 text-sm tracking-wide">
+            3D Background
           </h3>
 
           <div className="flex items-center mb-3">
@@ -41,16 +41,16 @@ export default function BackgroundToggle() {
                 onChange={() => toggleBackground(!showBackground)}
                 className="sr-only peer"
               />
-              <div className="relative w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-gray-500 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-yellow-800"></div>
-              <span className="ms-3 text-sm font-medium text-gray-300">
-                Enable 3D Background
+              <div className="relative w-11 h-6 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-zinc-400 after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-600"></div>
+              <span className="ms-3 text-sm font-medium text-zinc-300">
+                Enable scene
               </span>
             </label>
           </div>
 
           {showBackground && (
             <div className="mb-2">
-              <label className="block text-sm font-medium text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-zinc-300 mb-1">
                 Opacity
               </label>
               <input
@@ -60,9 +60,9 @@ export default function BackgroundToggle() {
                 step="0.01"
                 value={bgOpacity}
                 onChange={(e) => setOpacity(parseFloat(e.target.value))}
-                className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+                className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-red-500"
               />
-              <div className="flex justify-between text-xs text-gray-400 mt-1">
+              <div className="flex justify-between text-xs text-zinc-500 mt-1">
                 <span>Subtle</span>
                 <span>Vivid</span>
               </div>
@@ -71,7 +71,7 @@ export default function BackgroundToggle() {
 
           <button
             onClick={() => setIsOpen(false)}
-            className="mt-3 text-xs text-gray-400 hover:text-gray-300 underline"
+            className="mt-3 text-xs text-zinc-500 hover:text-white underline"
             type="button"
           >
             Close

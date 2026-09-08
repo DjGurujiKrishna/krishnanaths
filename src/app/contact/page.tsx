@@ -54,10 +54,16 @@ export default function Contact() {
           <h1 className="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-[0.8]">
             Let&apos;s <br /> <span className="text-gradient">Talk</span>
           </h1>
-          <p className="mt-8 text-zinc-500 max-w-xl mx-auto font-medium uppercase tracking-[0.2em] text-xs">
+          <p className="text-zinc-500 max-w-xl mx-auto font-medium uppercase tracking-[0.2em] text-xs">
             I&apos;m currently available for freelance projects and full-time
             opportunities. Reach out to start a conversation.
           </p>
+          <a
+            href="mailto:nath93266@gmail.com"
+            className="inline-block mt-4 text-sm tracking-[0.18em] text-white/80 hover:text-red-400 transition-colors"
+          >
+            nath93266@gmail.com
+          </a>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 max-w-4xl mx-auto">

@@ -162,7 +162,7 @@ export default function ProjectsPage() {
               placeholder="FILTER PROJECTS..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-full py-4 pl-12 pr-6 text-xs font-bold tracking-widest uppercase focus:outline-none focus:border-red-500/50 transition-all"
+              className="w-full bg-white/5 border border-white/10 rounded-full py-4 pl-12 pr-6 text-xs font-bold tracking-widest uppercase focus:outline-none focus:border-red-500/50 focus:shadow-[0_0_24px_rgba(255,49,49,0.15)] transition-all"
             />
           </div>
         </div>

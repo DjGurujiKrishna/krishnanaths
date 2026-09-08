@@ -38,7 +38,7 @@ export default function Navbar() {
     <nav
       className={`lg:fixed relative top-0 left-0 w-full z-[9999] transition-all duration-500 ${
         scrolled
-          ? "lg:bg-black/80 lg:backdrop-blur-xl lg:border-b lg:border-white/5 lg:py-4"
+          ? "lg:bg-black/75 lg:backdrop-blur-xl lg:border-b lg:border-white/5 lg:py-3 lg:shadow-[0_10px_40px_rgba(0,0,0,0.35)]"
           : "bg-transparent py-6"
       } ${!scrolled && "lg:py-6"} bg-black lg:bg-transparent`}
     >
@@ -53,20 +53,32 @@ export default function Navbar() {
           </h1>
         </Link>
 
-        <div className="hidden lg:flex items-center space-x-8">
-          {menuItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.path}
-              className={`text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 ${
-                pathname === item.path
-                  ? "text-red-500"
-                  : "text-zinc-400 hover:text-white"
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
+        <div className="hidden lg:flex items-center space-x-7">
+          {menuItems.map((item) => {
+            const isActive = pathname === item.path;
+            return (
+              <Link
+                key={item.name}
+                href={item.path}
+                className={`group relative text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 ${
+                  isActive ? "text-red-500" : "text-zinc-400 hover:text-white"
+                }`}
+              >
+                {item.name}
+                <span
+                  className={`absolute -bottom-2 left-0 h-[2px] bg-red-500 transition-all duration-300 ${
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </Link>
+            );
+          })}
+          <Link
+            href="/contact"
+            className="ml-2 rounded-full bg-white px-5 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-black transition-all hover:bg-red-600 hover:text-white"
+          >
+            Hire me
+          </Link>
         </div>
 
         <button
@@ -102,8 +114,8 @@ export default function Navbar() {
             : "opacity-0 invisible pointer-events-none"
         }`}
       >
-        <div className="flex flex-col items-center justify-center h-full space-y-8 p-6">
-          {menuItems.map((item) => (
+        <div className="flex flex-col items-center justify-center h-full space-y-7 p-6">
+          {menuItems.map((item, index) => (
             <Link
               key={item.name}
               href={item.path}
@@ -111,9 +123,12 @@ export default function Navbar() {
               className={`text-2xl font-black uppercase tracking-widest transition-all ${
                 pathname === item.path
                   ? "text-red-600 scale-110"
-                  : "text-zinc-600"
+                  : "text-zinc-500"
               }`}
             >
+              <span className="mr-3 text-[10px] text-zinc-700">
+                0{index + 1}
+              </span>
               {item.name}
             </Link>
           ))}

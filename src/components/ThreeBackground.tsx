@@ -23,7 +23,7 @@ function createParticles(count: number) {
 
 function ParticleField({
   count = 150,
-  color = "#FFDF80",
+  color = "#FF4D4D",
 }: {
   count?: number;
   color?: string;
@@ -52,7 +52,7 @@ function ParticleField({
 
 function GlowingSphere({
   position = [0, 0, 0] as [number, number, number],
-  color = "#FFB300",
+  color = "#FF3131",
   size = 1.5,
 }: {
   position?: [number, number, number];
@@ -89,8 +89,8 @@ function Scene() {
       <ambientLight intensity={0.2} />
       <pointLight position={[10, 10, 10]} intensity={0.8} />
       <ParticleField count={150} />
-      <GlowingSphere position={[-5, 0, -5]} color="#A38A3A" size={1.8} />
-      <GlowingSphere position={[5, 2, -3]} color="#FFB300" size={1.2} />
+      <GlowingSphere position={[-5, 0, -5]} color="#7F1D1D" size={1.8} />
+      <GlowingSphere position={[5, 2, -3]} color="#FF3131" size={1.2} />
       <OrbitControls
         enableZoom={false}
         enablePan={false}

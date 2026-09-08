@@ -73,14 +73,18 @@ export default function ServicesPage() {
             >
               <div className="absolute -top-10 -left-10 w-20 h-20 bg-red-600/10 rounded-full blur-3xl group-hover:bg-red-600/20 transition-all"></div>
 
-              <div className="text-3xl text-red-600 mb-6 transform group-hover:scale-110 transition-transform origin-left">
+              <div className="text-3xl text-red-600 mb-6 transform group-hover:scale-110 transition-transform origin-left relative z-10">
                 {service.icon}
               </div>
 
-              <h2 className="text-2xl font-black text-white font-outfit uppercase tracking-tight mb-4">
+              <p className="absolute top-6 right-8 text-5xl font-black text-white/5 font-outfit group-hover:text-red-600/10 transition-colors">
+                {String(index + 1).padStart(2, "0")}
+              </p>
+
+              <h2 className="text-2xl font-black text-white font-outfit uppercase tracking-tight mb-4 relative z-10">
                 {service.title}
               </h2>
-              <p className="text-zinc-500 leading-relaxed font-medium text-sm">
+              <p className="text-zinc-500 leading-relaxed font-medium text-sm relative z-10">
                 {service.description}
               </p>
             </div>

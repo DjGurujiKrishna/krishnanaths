@@ -22,4 +22,15 @@ export default function HomeImg() {
                        lg:w-96 lg:h-[550px]
                        transition-all duration-500 group-hover:scale-[1.02] group-hover:-rotate-1"
           />
-          <div className="ab
+          <div className="absolute inset-0 rounded-[2.5rem] ring-1 ring-inset ring-white/20"></div>
+          <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        </div>
+
+        <div className="absolute -bottom-4 left-6 z-20 rounded-full border border-white/10 bg-black/70 px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-white backdrop-blur-md">
+          Lead Engineer
+        </div>
+        <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-red-600 rounded-2xl rotate-12 -z-10 blur-xl opacity-50 animate-pulse"></div>
+      </div>
+    </div>
+  );
+}
