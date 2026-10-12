@@ -48,7 +48,7 @@ export default async function AdminHomePage() {
           <input className="admin-input" name="stackLabel" defaultValue={profile?.stackLabel} required />
         </label>
         <label className="block">
-          <span className="admin-label">Portrait URL</span>
+          <span className="admin-label">Hero image URL</span>
           <input className="admin-input" name="portraitUrl" defaultValue={profile?.portraitUrl} required />
         </label>
         <label className="block">

@@ -1,5 +1,12 @@
 import Image from "next/image";
 
+const HERO_IMAGE = "/krishnanath.jpg";
+
+function resolveHeroSrc(src: string) {
+  if (!src || src === "/krishna.jpg") return HERO_IMAGE;
+  return src;
+}
+
 export default function HomeImg({
   src,
   badge,
@@ -7,38 +14,29 @@ export default function HomeImg({
   src: string;
   badge: string;
 }) {
-  const isRemote = src.startsWith("http");
+  const resolved = resolveHeroSrc(src);
+  const isRemote = resolved.startsWith("http");
 
   return (
-    <div className="flex items-center justify-center py-8 md:py-12 px-4 relative">
-      <div className="relative group animate-float" data-aos="zoom-in">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[128%] h-[128%] bg-red-600/28 rounded-full blur-[90px] group-hover:bg-red-500/40 transition-all duration-700"></div>
-
-        <div className="relative z-10 perspective-1000">
-          <div className="absolute -top-3 -left-3 h-16 w-16 border-l-2 border-t-2 border-red-500/80 rounded-tl-3xl" />
-          <div className="absolute -bottom-3 -right-3 h-16 w-16 border-b-2 border-r-2 border-white/70 rounded-br-3xl" />
-
-          <Image
-            src={src}
-            alt="Portrait"
-            width={384}
-            height={550}
-            priority
-            unoptimized={isRemote}
-            className="rounded-[2.5rem] object-cover border-[6px] border-white/90 shadow-[0_20px_50px_rgba(0,0,0,0.5)]
-                       w-64 h-80
-                       md:w-80 md:h-[450px]
-                       lg:w-96 lg:h-[550px]
-                       transition-all duration-500 group-hover:scale-[1.02] group-hover:-rotate-1"
-          />
-          <div className="absolute inset-0 rounded-[2.5rem] ring-1 ring-inset ring-white/20"></div>
-          <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+      <div className="hero-bg absolute inset-x-0 top-0 h-[58vh] lg:left-[34%] lg:h-[88vh] lg:w-auto">
+        <Image
+          src={resolved}
+          alt=""
+          fill
+          priority
+          sizes="(min-width: 1024px) 64vw, 100vw"
+          unoptimized={isRemote}
+          className="hero-drift object-cover object-[70%_36%] lg:object-[76%_30%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black lg:bg-gradient-to-r lg:from-black lg:via-black/55 lg:to-black/10" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black to-transparent lg:h-40" />
+        <div className="absolute bottom-8 right-8 hidden items-center gap-3 lg:flex">
+          <span className="h-px w-8 bg-red-500" />
+          <span className="text-[10px] font-black uppercase tracking-[0.22em] text-white/80">
+            {badge}
+          </span>
         </div>
-
-        <div className="absolute -bottom-4 left-6 z-20 rounded-full border border-white/10 bg-black/70 px-4 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-white backdrop-blur-md">
-          {badge}
-        </div>
-        <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-red-600 rounded-2xl rotate-12 -z-10 blur-xl opacity-50 animate-pulse"></div>
       </div>
     </div>
   );

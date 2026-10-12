@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   description:
     "Lead Software Engineer crafting high-performance web experiences with the MERN Stack, Django, and Next.js.",
   icons: {
-    icon: "/krishna.jpg",
+    icon: "/krishnanath.jpg",
   },
 };
 

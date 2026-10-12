@@ -11,18 +11,19 @@ import type { IconType } from "react-icons";
 function SocialIcon({
   href,
   icon: Icon,
+  label,
 }: {
   href: string;
   icon: IconType;
   label: string;
 }) {
   return (
-    <a
+      <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={label}
       className="relative group p-2 transition-all duration-300 transform hover:-translate-y-1"
-      data-aos="zoom-in"
     >
       <div className="absolute inset-0 bg-red-600/0 group-hover:bg-red-600/20 rounded-xl transition-all duration-300 blur-lg scale-150"></div>
       <div className="relative z-10 text-zinc-500 group-hover:text-red-500 transition-colors duration-300">
@@ -64,27 +65,24 @@ export default function Footer() {
 
   return (
     <footer className="bg-black border-t border-white/5 relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-x-0 -top-24 h-48 bg-gradient-to-b from-red-600/10 to-transparent" />
-      <p className="pointer-events-none absolute left-1/2 top-8 -translate-x-1/2 select-none text-[18vw] font-black leading-none tracking-tighter text-white/[0.03] font-outfit">
-        KRISHNA
-      </p>
-      <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          <div className="space-y-6" data-aos="fade-right">
+      <div className="pointer-events-none absolute inset-x-0 -top-24 h-40 bg-gradient-to-b from-red-600/10 to-transparent" />
+      <div className="max-w-7xl mx-auto px-6 py-10 md:py-12 relative z-10">
+        <div className="grid gap-8 md:grid-cols-12 md:items-start md:gap-6">
+          <div className="space-y-3 md:col-span-5">
             <h3 className="text-2xl font-black font-outfit text-white tracking-tighter uppercase">
               KRISHNA<span className="text-red-600">NATH</span>
             </h3>
-            <p className="text-zinc-500 max-w-xs font-medium uppercase tracking-widest text-[10px] leading-relaxed">
+            <p className="text-zinc-500 max-w-sm font-medium uppercase tracking-widest text-[10px] leading-relaxed">
               Crafting state-of-the-art digital experiences with precision and
               speed.
             </p>
           </div>
 
-          <div className="space-y-5" data-aos="fade-up">
+          <nav className="md:col-span-3" aria-label="Footer">
             <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400">
               Navigate
             </h4>
-            <div className="flex flex-col gap-3">
+            <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3 md:gap-x-8">
               {footerLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -95,18 +93,13 @@ export default function Footer() {
                 </Link>
               ))}
             </div>
-          </div>
+          </nav>
 
-          <div className="hidden lg:block"></div>
-
-          <div
-            className="space-y-6 flex flex-col items-start md:items-end"
-            data-aos="fade-left"
-          >
-            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400">
-              Social Connections
+          <div className="md:col-span-4 md:justify-self-end">
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 md:text-right">
+              Social
             </h4>
-            <div className="flex gap-4">
+            <div className="mt-2 flex flex-wrap gap-1 md:justify-end">
               {socialLinks.map((link) => (
                 <SocialIcon
                   key={link.label}
@@ -119,7 +112,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-8 flex flex-col gap-3 border-t border-white/5 pt-6 pr-16 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-600">
             &copy; {currentYear} KRISHNANATH.S • ALL RIGHTS RESERVED
           </p>

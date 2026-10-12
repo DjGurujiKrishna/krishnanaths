@@ -12,7 +12,7 @@ async function seed() {
         bio: "Crafting high-performance web experiences with the MERN Stack, Django, and Next.js. Passionate about building modern, scalable, and user-centric applications.",
         location: "Kochi, Kerala",
         stackLabel: "MERN + Django",
-        portraitUrl: "/krishna.jpg",
+        portraitUrl: "/krishnanath.jpg",
         marquee:
           "React, Next.js, TypeScript, Node.js, Django, MongoDB, PostgreSQL, AWS, Docker, Tailwind CSS",
         badgeLabel: "Lead Engineer",

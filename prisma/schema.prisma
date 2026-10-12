@@ -15,7 +15,7 @@ model Profile {
   bio          String
   location     String
   stackLabel   String
-  portraitUrl  String @default("/krishna.jpg")
+  portraitUrl  String @default("/krishnanath.jpg")
   marquee      String
   badgeLabel   String @default("Lead Engineer")
 }

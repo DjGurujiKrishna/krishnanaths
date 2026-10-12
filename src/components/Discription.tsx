@@ -23,14 +23,14 @@ export default function Discription({ content }: { content: HomeContent }) {
   ];
 
   return (
-    <section className="relative overflow-hidden py-12 lg:py-0">
+    <section className="relative overflow-hidden py-4 lg:py-0">
       <div className="max-w-4xl mx-auto relative z-10">
         <div className="space-y-8" data-aos="fade-up">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex flex-wrap items-center gap-4"
+            className="hidden flex-wrap items-center gap-4 lg:flex"
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.28em] text-red-400">
               <span className="relative flex h-2 w-2">

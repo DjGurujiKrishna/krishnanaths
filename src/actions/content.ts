@@ -53,7 +53,7 @@ export async function saveProfile(formData: FormData) {
     bio: text(formData, "bio"),
     location: text(formData, "location"),
     stackLabel: text(formData, "stackLabel"),
-    portraitUrl: text(formData, "portraitUrl") || "/krishna.jpg",
+    portraitUrl: text(formData, "portraitUrl") || "/krishnanath.jpg",
     marquee: text(formData, "marquee"),
     badgeLabel: text(formData, "badgeLabel") || "Lead Engineer",
   };
